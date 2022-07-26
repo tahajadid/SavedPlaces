@@ -172,7 +172,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         Log.d("MapsActivityLog", "Inside on permission result 111")
 
         if (requestCode == LOCATION_PERMISSION_REQUEST_CODE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            map.isMyLocationEnabled = true
+            // map.isMyLocationEnabled = true
             Log.d("MapsActivityLog", "Inside on permission result 222")
         }
     }
