@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:layoutDescription="@xml/activity_maps_scene">
 
     <fragment
         android:id="@+id/map"
@@ -19,6 +20,35 @@
         app:layout_constraintTop_toTopOf="@+id/guideline2"
         tools:context=".MapsActivity" />
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_favourite_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="-12dp"
+        android:layout_marginBottom="-12dp"
+        android:background="#E2F1F1"
+        android:paddingTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        tools:layout="@layout/favourite_list"
+        tools:listitem="@layout/favourite_item" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_empty"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.0"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/empty_favourite" />
 
     <View
         android:id="@+id/view2"
@@ -48,8 +78,8 @@
         android:id="@+id/mylocation_iv"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="60dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/my_location" />
@@ -74,7 +104,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:elevation="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/map"
+        android:paddingVertical="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view2"
@@ -91,4 +122,69 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/information_icon" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/separator"
+        android:layout_width="10dp"
+        android:layout_height="0dp"
+        android:background="@color/teal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list_favourite_fragment"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+
+    <ImageView
+        android:id="@+id/favourite_fill_iv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:srcCompat="@drawable/favorite_fill" />
+
+
+    <TextView
+        android:id="@+id/favourite_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Favourite"
+        android:textColor="@color/teal"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/favourite_fill_iv"
+        app:layout_constraintStart_toEndOf="@+id/separator"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+
+    <ImageView
+        android:id="@+id/map_fill_iv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/separator"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:srcCompat="@drawable/carte_fill" />
+
+    <TextView
+        android:id="@+id/map_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-black"
+        android:text="Map"
+        android:textColor="@color/teal"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/separator"
+        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintStart_toEndOf="@+id/map_fill_iv"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
