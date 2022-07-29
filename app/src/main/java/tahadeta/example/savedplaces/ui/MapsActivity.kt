@@ -1,9 +1,8 @@
-package tahadeta.example.savedplaces
+package tahadeta.example.savedplaces.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Dialog
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -24,6 +23,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import tahadeta.example.savedplaces.R
 import tahadeta.example.savedplaces.databinding.ActivityMapsBinding
 import tahadeta.example.savedplaces.helper.Constants
 import tahadeta.example.savedplaces.helper.ModelPreferencesManager
@@ -52,6 +52,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private val LOCATION_PERMISSION_REQUEST_CODE = 100
 
+    var actualLat = "0.0"
+    var actualLng = "0.0"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -61,6 +64,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding.root)
 
         animationView = findViewById(R.id.animation_empty)
+
+        // animationView.visibility = View.VISIBLE
+
         addAnimation = findViewById(R.id.add_favourite_iv)
         localisationAnimation = findViewById(R.id.mylocation_iv)
 
@@ -81,23 +87,22 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         addAnimation.setOnClickListener {
-            getDeviceLocation()
+            if (actualLat.equals("0.0") && actualLng.equals("0.0")) getDeviceLocation()
             showAddLayout()
         }
 
-        checkFavouriteList()
-        setFavouritePlaces()
+        initFavouritePlaces()
     }
 
     private fun showAddLayout() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.add_place)
         var okBtn = dialog.findViewById<TextView>(R.id.addLabel_tv)
+        var placeName = dialog.findViewById<TextView>(R.id.label_et)
 
         okBtn.setOnClickListener {
-            val intent = Intent(this, MapsActivity::class.java)
-            startActivity(intent)
-            finish()
+            animationView.visibility = View.GONE
+            addItemToList(FavouritePlace(actualLat, actualLng, placeName.text.toString()))
             dialog.dismiss()
         }
 
@@ -109,28 +114,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         dialog.show()
     }
 
-    private fun checkFavouriteList() {
-
-        if (ModelPreferencesManager.get<MutableList<FavouritePlace>>(Constants.LIST_FAV) == null) {
-            animationView.visibility = View.VISIBLE
-            // ModelPreferencesManager.put<MutableList<FavouritePlace>>(templistFavourite, Constants.LIST_FAV)
-        } else {
-            listFavourite = ModelPreferencesManager.get<MutableList<FavouritePlace>>(Constants.LIST_FAV)!!
-            Log.d("DataTest", "test = " + listFavourite.toString())
-            animationView.visibility = View.GONE
-        }
+    private fun addItemToList(favouritePlace: FavouritePlace) {
+        listFavouritePlaces.add(favouritePlace)
+        favouriteAdapter.notifyDataSetChanged()
     }
 
-    private fun setFavouritePlaces() {
-
-        /*
-        listFavourite.add(FavouritePlace(22.333, 3.3333, "Ma premiere positon"))
-        listFavourite.add(FavouritePlace(22.333, 3.3333, "Ma premiere positon"))
-        */
-
-        if (listFavouritePlaces.isEmpty())
-            animationView.visibility = View.VISIBLE
-        else animationView.visibility = View.GONE
+    private fun initFavouritePlaces() {
 
         favouriteAdapter =
             FavouriteAdapter(this.baseContext, listFavouritePlaces)
@@ -208,6 +197,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                                     DEFAULT_ZOOM.toFloat()
                                 )
                             )
+                            actualLat = lastKnownLocation!!.latitude.toString()
+                            actualLng = lastKnownLocation!!.longitude.toString()
                         }
                     }
                 }
