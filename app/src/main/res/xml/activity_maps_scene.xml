@@ -134,5 +134,14 @@
             motion:layout_constraintTop_toTopOf="@+id/guideline3"
             motion:layout_constraintStart_toStartOf="parent"
             android:id="@+id/map_fill_iv" />
+        <Constraint
+            android:id="@+id/add_favourite_iv"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="20dp"
+            motion:layout_constraintBottom_toTopOf="@+id/view"
+            android:layout_marginStart="20dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone" />
     </ConstraintSet>
 </MotionScene>
