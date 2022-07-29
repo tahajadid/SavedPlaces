@@ -1,4 +1,4 @@
-package tahadeta.example.savedplaces
+package tahadeta.example.savedplaces.helper
 
 import android.content.Context
 import android.location.LocationManager

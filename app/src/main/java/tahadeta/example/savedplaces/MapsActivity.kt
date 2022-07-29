@@ -6,10 +6,14 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -19,13 +23,22 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import tahadeta.example.savedplaces.databinding.ActivityMapsBinding
+import tahadeta.example.savedplaces.helper.Constants
+import tahadeta.example.savedplaces.helper.ModelPreferencesManager
+import tahadeta.example.savedplaces.model.FavouritePlace
+import java.util.*
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
-    private var permissionLocation = false
     private lateinit var mylocation: ImageView
+    private lateinit var listRecyclerView: RecyclerView
+    private lateinit var animationView: LottieAnimationView
+    lateinit var favouriteAdapter: FavouriteAdapter
+    internal var listFavourite: MutableList<FavouritePlace> = ArrayList()
+    internal var templistFavourite: MutableList<FavouritePlace> = ArrayList()
+
 
     private var locationPermissionGranted = false
     private var lastKnownLocation: Location? = null
@@ -40,27 +53,65 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        ModelPreferencesManager.with(this.application)
+
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        animationView = findViewById(R.id.animation_empty)
+        listRecyclerView = findViewById(R.id.list_favourite_fragment)
+        mylocation = findViewById(R.id.mylocation_iv)
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        // fetchLocation()
 
         // Build the map.
-        // [START maps_current_place_map_fragment]
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
-        // [END maps_current_place_map_fragment]
-        // [END_EXCLUDE]
 
-        mylocation = findViewById(R.id.mylocation_iv)
+        // Remove Data
+        ModelPreferencesManager.removeData(Constants.LIST_FAV)
+
         mylocation.setOnClickListener {
             getDeviceLocation()
-            // goToThePlace()
         }
 
-        // enableMyLocation()
+        checkFavouriteList()
+        setFavouritePlaces()
+    }
+
+    private fun checkFavouriteList() {
+
+        if (ModelPreferencesManager.get<MutableList<FavouritePlace>>(Constants.LIST_FAV) == null) {
+            animationView.visibility = View.VISIBLE
+            //templistFavourite.add(FavouritePlace(11.333, 980.3443, "###ALL premiere positon"))
+            //ModelPreferencesManager.put<MutableList<FavouritePlace>>(templistFavourite, Constants.LIST_FAV)
+        } else {
+            listFavourite = ModelPreferencesManager.get<MutableList<FavouritePlace>>(Constants.LIST_FAV)!!
+            Log.d("DataTest", "test = " + listFavourite.toString())
+            animationView.visibility = View.GONE
+        }
+    }
+
+    private fun setFavouritePlaces() {
+
+        listFavourite.add(FavouritePlace(22.333, 3.3333, "Ma premiere positon"))
+        listFavourite.add(FavouritePlace(22.333, 3.3333, "Ma premiere positon"))
+        listFavourite.add(FavouritePlace(22.333, 3.3333, "Ma premiere positon"))
+        listFavourite.add(FavouritePlace(22.333, 3.3333, "Ma premiere positon"))
+        listFavourite.add(FavouritePlace(22.333, 3.3333, "Ma premiere positon"))
+        listFavourite.add(FavouritePlace(22.333, 3.3333, "Ma premiere positon"))
+        listFavourite.add(FavouritePlace(22.333, 3.3333, "Ma premiere positon"))
+        listFavourite.add(FavouritePlace(22.333, 3.3333, "Ma premiere positon"))
+        listFavourite.add(FavouritePlace(22.333, 3.3333, "Ma premiere positon"))
+
+        favouriteAdapter =
+            FavouriteAdapter(this.baseContext, listFavourite)
+
+        listRecyclerView.apply {
+            layoutManager = GridLayoutManager(this.context, 1)
+            adapter = favouriteAdapter
+        }
     }
 
     /**
