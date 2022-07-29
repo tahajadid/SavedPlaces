@@ -40,6 +40,7 @@
         android:id="@+id/animation_empty"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:padding="50dp"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -74,15 +75,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/mylocation_iv"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
+        android:elevation="40dp"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/my_location" />
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/localisation" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/add_favourite_iv"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/add" />
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
