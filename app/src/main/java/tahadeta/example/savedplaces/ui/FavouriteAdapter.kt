@@ -1,4 +1,4 @@
-package tahadeta.example.savedplaces
+package tahadeta.example.savedplaces.ui
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import tahadeta.example.savedplaces.R
 import tahadeta.example.savedplaces.model.FavouritePlace
 
 class FavouriteAdapter(
@@ -35,12 +36,6 @@ class FavouriteAdapter(
 
             coordonateItem.text = cordToShow
             labelPlace.text = item.title
-
-            /*
-            deleteImage.setOnClickListener {
-                deleteItem(position)
-            }
-             */
         }
     }
 

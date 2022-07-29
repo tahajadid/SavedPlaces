@@ -18,7 +18,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        tools:context=".MapsActivity" />
+        tools:context=".ui.MapsActivity" />
 
 
     <androidx.recyclerview.widget.RecyclerView
