@@ -25,8 +25,9 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import tahadeta.example.savedplaces.R
 import tahadeta.example.savedplaces.databinding.ActivityMapsBinding
-import tahadeta.example.savedplaces.helper.Constants
-import tahadeta.example.savedplaces.helper.ModelPreferencesManager
+import tahadeta.example.savedplaces.helper.*
+import tahadeta.example.savedplaces.helper.favouritePlaceActual
+import tahadeta.example.savedplaces.helper.isSet
 import tahadeta.example.savedplaces.helper.listFavouritePlaces
 import tahadeta.example.savedplaces.model.FavouritePlace
 import java.util.*
@@ -80,10 +81,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment?.getMapAsync(this)
 
         // Remove Data
-        ModelPreferencesManager.removeData(Constants.LIST_FAV)
+        // ModelPreferencesManager.removeData(Constants.LIST_FAV)
 
         localisationAnimation.setOnClickListener {
             getDeviceLocation()
+        }
+
+        if (isSet) {
+            goToThePlace(favouritePlaceActual)
         }
 
         addAnimation.setOnClickListener {
@@ -285,9 +290,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     /**
      * Function to change place
      */
-    fun goToThePlace(lat: Double, lng: Double, title: String) {
-        val newlatLng = LatLng(lat, lng)
-        val markerOptions = MarkerOptions().position(newlatLng).title(title)
+    fun goToThePlace(favouritePlace: FavouritePlace) {
+        val newlatLng = LatLng(favouritePlace.lat.toDouble(), favouritePlace.lng.toDouble())
+        val markerOptions = MarkerOptions().position(newlatLng).title(favouritePlace.title)
         actualGoogleMap.animateCamera(CameraUpdateFactory.newLatLng(newlatLng))
         actualGoogleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(newlatLng, 15f))
         actualGoogleMap.addMarker(markerOptions)
