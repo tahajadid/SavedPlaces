@@ -1,12 +1,15 @@
 package tahadeta.example.savedplaces.ui
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import tahadeta.example.savedplaces.R
+import tahadeta.example.savedplaces.helper.favouritePlaceActual
+import tahadeta.example.savedplaces.helper.isSet
 import tahadeta.example.savedplaces.model.FavouritePlace
 
 class FavouriteAdapter(
@@ -46,6 +49,14 @@ class FavouriteAdapter(
         val delete = holder.itemView.findViewById<TextView>(R.id.delete_tv)
         delete.setOnClickListener {
             deleteItem(position)
+        }
+
+        holder.itemView.setOnClickListener {
+            isSet = true
+            favouritePlaceActual = FavouritePlace(item.lat,item.lng,item.title)
+            val intentMaps = Intent(this.context,MapsActivity::class.java)
+            intentMaps.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            this.context?.startActivity(intentMaps)
         }
     }
 
