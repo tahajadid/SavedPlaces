@@ -52,9 +52,7 @@ class DemoActivity : AppCompatActivity(), ViewPagerAdapter.ConditionViewPager {
         Handler().postDelayed({
             nextImage.visibility = View.GONE
             backImage.visibility = View.GONE
-        }, 1500) // 600 is the delayed time in milliseconds.
-
-
+        }, 1500) // 1500 is the delayed time in milliseconds.
     }
 
     private fun castView() {
@@ -66,7 +64,7 @@ class DemoActivity : AppCompatActivity(), ViewPagerAdapter.ConditionViewPager {
     }
 
     private fun addToList() {
-        for (item in 1..3) {
+        for (item in 1..4) {
             data.add("item $item")
         }
     }

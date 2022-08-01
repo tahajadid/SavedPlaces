@@ -143,5 +143,32 @@
             android:layout_marginStart="20dp"
             motion:layout_constraintStart_toStartOf="parent"
             android:visibility="gone" />
+        <Constraint
+            android:id="@+id/view_demo"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            motion:layout_constraintBottom_toBottomOf="@+id/list_favourite_fragment"
+            motion:layout_constraintHorizontal_bias="0.5"
+            motion:layout_constraintTop_toTopOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone" />
+        <Constraint
+            android:id="@+id/animation_demo"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            motion:layout_constraintBottom_toTopOf="@+id/view"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone" />
+        <Constraint
+            android:id="@+id/text_demo"
+            motion:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            motion:layout_constraintBottom_toTopOf="@+id/view"
+            motion:layout_constraintStart_toStartOf="parent"
+            android:visibility="gone" />
     </ConstraintSet>
 </MotionScene>

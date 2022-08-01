@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     app:layoutDescription="@xml/activity_maps_scene">
 
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -18,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline2"
-        tools:context=".ui.MapsActivity" />
+        tools:context=".ui.map.MapsActivity" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -54,6 +55,7 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:elevation="10dp"
         android:background="@drawable/bottom_main_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +68,6 @@
         android:layout_height="60dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
-        android:elevation="40dp"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toEndOf="parent"
         app:lottie_autoPlay="true"
@@ -77,8 +78,8 @@
         android:id="@+id/add_favourite_iv"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="20dp"
         android:layout_marginStart="20dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintStart_toStartOf="parent"
         app:lottie_autoPlay="true"
@@ -118,8 +119,8 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginEnd="20dp"
-        android:padding="5dp"
         android:elevation="10dp"
+        android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -134,6 +135,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.7"
+        android:elevation="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/list_favourite_fragment"
         app:layout_constraintTop_toTopOf="@+id/view" />
@@ -144,6 +146,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="20dp"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view"
@@ -156,6 +159,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-black"
         android:text="Favourite"
+        android:elevation="10dp"
         android:textColor="@color/teal"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -168,6 +172,7 @@
         android:id="@+id/map_fill_iv"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/separator"
         app:layout_constraintHorizontal_bias="0.3"
@@ -182,6 +187,7 @@
         android:fontFamily="sans-serif-black"
         android:text="Map"
         android:textColor="@color/teal"
+        android:elevation="10dp"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/separator"

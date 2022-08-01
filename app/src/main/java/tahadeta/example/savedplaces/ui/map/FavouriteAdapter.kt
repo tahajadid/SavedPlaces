@@ -1,4 +1,4 @@
-package tahadeta.example.savedplaces.ui
+package tahadeta.example.savedplaces.ui.map
 
 import android.content.Context
 import android.content.Intent
