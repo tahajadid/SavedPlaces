@@ -36,21 +36,6 @@
         tools:layout="@layout/favourite_list"
         tools:listitem="@layout/favourite_item" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_empty"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:padding="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.0"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/empty_favourite" />
-
     <View
         android:id="@+id/view2"
         android:layout_width="match_parent"

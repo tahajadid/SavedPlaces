@@ -67,6 +67,15 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
 
-    //implementation 'org.jetbrains.anko:anko-common:0.9'
+    // CircleIndicator
+    // https://github.com/ongakuer/CircleIndicator
+    implementation 'me.relex:circleindicator:2.1.6'
+
+    // ViewPager2
+    // https://developer.android.com/jetpack/androidx/releases/viewpager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    implementation 'com.github.tahajadid:SpicyAnimation:0.1.0'
+
 
 }

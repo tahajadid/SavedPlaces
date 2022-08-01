@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -25,23 +24,20 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import tahadeta.example.savedplaces.R
 import tahadeta.example.savedplaces.databinding.ActivityMapsBinding
-import tahadeta.example.savedplaces.helper.*
+import tahadeta.example.savedplaces.helper.ModelPreferencesManager
 import tahadeta.example.savedplaces.helper.favouritePlaceActual
 import tahadeta.example.savedplaces.helper.isSet
 import tahadeta.example.savedplaces.helper.listFavouritePlaces
 import tahadeta.example.savedplaces.model.FavouritePlace
-import java.util.*
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     private lateinit var listRecyclerView: RecyclerView
-    private lateinit var animationView: LottieAnimationView
     private lateinit var addAnimation: LottieAnimationView
     private lateinit var localisationAnimation: LottieAnimationView
     lateinit var favouriteAdapter: FavouriteAdapter
-    internal var listFavourite: MutableList<FavouritePlace> = ArrayList()
 
     private var locationPermissionGranted = false
     private var lastKnownLocation: Location? = null
@@ -64,10 +60,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        animationView = findViewById(R.id.animation_empty)
-
-        // animationView.visibility = View.VISIBLE
-
         addAnimation = findViewById(R.id.add_favourite_iv)
         localisationAnimation = findViewById(R.id.mylocation_iv)
 
@@ -87,10 +79,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             getDeviceLocation()
         }
 
-        if (isSet) {
-            goToThePlace(favouritePlaceActual)
-        }
-
         addAnimation.setOnClickListener {
             if (actualLat.equals("0.0") && actualLng.equals("0.0")) getDeviceLocation()
             showAddLayout()
@@ -106,7 +94,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         var placeName = dialog.findViewById<TextView>(R.id.label_et)
 
         okBtn.setOnClickListener {
-            animationView.visibility = View.GONE
             addItemToList(FavouritePlace(actualLat, actualLng, placeName.text.toString()))
             dialog.dismiss()
         }
@@ -173,6 +160,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Get the current location of the device and set the position of the map.
         getDeviceLocation()
+
+        if (isSet) {
+            goToThePlace(favouritePlaceActual)
+        }
     }
 
     /**
