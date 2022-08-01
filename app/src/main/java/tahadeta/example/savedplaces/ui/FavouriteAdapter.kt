@@ -53,8 +53,8 @@ class FavouriteAdapter(
 
         holder.itemView.setOnClickListener {
             isSet = true
-            favouritePlaceActual = FavouritePlace(item.lat,item.lng,item.title)
-            val intentMaps = Intent(this.context,MapsActivity::class.java)
+            favouritePlaceActual = FavouritePlace(item.lat, item.lng, item.title)
+            val intentMaps = Intent(this.context, MapsActivity::class.java)
             intentMaps.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             this.context?.startActivity(intentMaps)
         }
