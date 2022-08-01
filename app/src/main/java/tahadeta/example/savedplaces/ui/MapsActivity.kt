@@ -3,10 +3,12 @@ package tahadeta.example.savedplaces.ui
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -29,12 +31,14 @@ import tahadeta.example.savedplaces.helper.favouritePlaceActual
 import tahadeta.example.savedplaces.helper.isSet
 import tahadeta.example.savedplaces.helper.listFavouritePlaces
 import tahadeta.example.savedplaces.model.FavouritePlace
+import tahadeta.example.savedplaces.ui.demo.DemoActivity
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapsBinding
     private lateinit var listRecyclerView: RecyclerView
+    private lateinit var infoImageView: ImageView
     private lateinit var addAnimation: LottieAnimationView
     private lateinit var localisationAnimation: LottieAnimationView
     lateinit var favouriteAdapter: FavouriteAdapter
@@ -62,6 +66,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         addAnimation = findViewById(R.id.add_favourite_iv)
         localisationAnimation = findViewById(R.id.mylocation_iv)
+        infoImageView = findViewById(R.id.info_iv)
 
         listRecyclerView = findViewById(R.id.list_favourite_fragment)
 
@@ -82,6 +87,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         addAnimation.setOnClickListener {
             if (actualLat.equals("0.0") && actualLng.equals("0.0")) getDeviceLocation()
             showAddLayout()
+        }
+
+        infoImageView.setOnClickListener {
+            val intent = Intent(this, DemoActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         initFavouritePlaces()

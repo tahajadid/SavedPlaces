@@ -8,14 +8,17 @@
         <entry key="app/src/main/res/drawable/gradient_add.xml" value="0.1845" />
         <entry key="app/src/main/res/drawable/gradient_delete.xml" value="0.262" />
         <entry key="app/src/main/res/drawable/ic_launcher_logo_background.xml" value="0.1185" />
+        <entry key="app/src/main/res/drawable/index_bg.xml" value="0.127" />
+        <entry key="app/src/main/res/drawable/navigate_next_24.xml" value="0.1895" />
         <entry key="app/src/main/res/drawable/top_main_bg.xml" value="0.1225" />
         <entry key="app/src/main/res/drawable/top_main_teal.xml" value="0.1225" />
-        <entry key="app/src/main/res/layout/activity_demo.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_maps.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_demo.xml" value="0.3888888888888889" />
+        <entry key="app/src/main/res/layout/activity_maps.xml" value="0.55" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1983695652173913" />
         <entry key="app/src/main/res/layout/add_place.xml" value="0.17604166666666668" />
         <entry key="app/src/main/res/layout/favourite_item.xml" value="0.5" />
         <entry key="app/src/main/res/layout/favourite_list.xml" value="0.15260416666666668" />
+        <entry key="app/src/main/res/layout/item_page.xml" value="0.25" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_logo.xml" value="0.1185" />
         <entry key="app/src/main/res/xml/add_place_layout.xml" value="0.17604166666666668" />
       </map>
