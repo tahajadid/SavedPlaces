@@ -52,4 +52,14 @@
         app:layout_constraintBottom_toTopOf="@+id/indicator"
         app:srcCompat="@drawable/droite" />
 
+    <ImageView
+        android:id="@+id/top"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/top" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

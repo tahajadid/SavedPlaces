@@ -26,7 +26,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import tahadeta.example.savedplaces.R
 import tahadeta.example.savedplaces.databinding.ActivityMapsBinding
-import tahadeta.example.savedplaces.helper.ModelPreferencesManager
+import tahadeta.example.savedplaces.helper.*
 import tahadeta.example.savedplaces.helper.favouritePlaceActual
 import tahadeta.example.savedplaces.helper.isSet
 import tahadeta.example.savedplaces.helper.listFavouritePlaces
@@ -46,12 +46,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private var locationPermissionGranted = false
     private var lastKnownLocation: Location? = null
 
-    var currentLocation: Location? = null
     var fusedLocationProviderClient: FusedLocationProviderClient? = null
 
     lateinit var actualGoogleMap: GoogleMap
-
-    private val LOCATION_PERMISSION_REQUEST_CODE = 100
 
     var actualLat = "0.0"
     var actualLng = "0.0"
@@ -81,7 +78,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // ModelPreferencesManager.removeData(Constants.LIST_FAV)
 
         localisationAnimation.setOnClickListener {
-            getDeviceLocation()
+            if (LocationHelper.isLocationEnabled(context = this.baseContext) == true)
+                getDeviceLocation()
+            else showActivateLocation()
         }
 
         addAnimation.setOnClickListener {
@@ -96,6 +95,30 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         initFavouritePlaces()
+    }
+
+    private fun showActivateLocation() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.enable_location)
+        var goSetting = dialog.findViewById<TextView>(R.id.goSetting)
+        var cancel = dialog.findViewById<TextView>(R.id.cancel)
+
+        goSetting.setOnClickListener {
+            val intent = Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            startActivity(intent)
+            dialog.dismiss()
+        }
+
+        cancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        val width = resources.displayMetrics.widthPixels * 0.80
+        val height = resources.displayMetrics.heightPixels * 0.40
+
+        dialog.window?.setLayout(width.toInt(), height.toInt())
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.show()
     }
 
     private fun showAddLayout() {
@@ -267,27 +290,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         updateLocationUI()
     }
     // [END maps_current_place_on_request_permissions_result]
-
-    @SuppressLint("MissingPermission")
-    private fun fetchLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), LOCATION_PERMISSION_REQUEST_CODE)
-            return
-        }
-
-        val task = fusedLocationProviderClient!!.lastLocation
-        task.addOnSuccessListener { location ->
-            if (location != null) {
-                currentLocation = location
-                Log.d("MapsActivityLog", "******* task value : ${location.longitude}")
-
-                val supportMapFragment = (supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?)
-                supportMapFragment!!.getMapAsync(this@MapsActivity)
-            }
-        }
-    }
 
     /**
      * Function to change place

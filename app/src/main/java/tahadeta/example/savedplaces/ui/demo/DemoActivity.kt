@@ -64,7 +64,7 @@ class DemoActivity : AppCompatActivity(), ViewPagerAdapter.ConditionViewPager {
     }
 
     private fun addToList() {
-        for (item in 1..4) {
+        for (item in 1..3) {
             data.add("item $item")
         }
     }
