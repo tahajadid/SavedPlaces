@@ -25,15 +25,15 @@ class FavouriteAdapter(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindView(item: FavouritePlace, position: Int, context: Context?) {
-            var cordToShow: String = ""
+            var cordToShow = ""
 
-            val deleteImage: TextView = itemView.findViewById(R.id.delete_tv)
             val labelPlace: TextView = itemView.findViewById(R.id.place_name)
             val coordonateItem: TextView = itemView.findViewById(R.id.coordonate_item)
 
             if (item.lat.toString().length > 7) cordToShow += item.lat.toString().take(6) else
                 cordToShow += item.lat.toString()
 
+            cordToShow += " / "
             if (item.lng.toString().length > 7) cordToShow += item.lng.toString().take(6) else
                 cordToShow += item.lng.toString()
 
