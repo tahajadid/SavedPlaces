@@ -8,12 +8,17 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.spicyanimation.SpicyAnimation
 import tahadeta.example.savedplaces.R
+import tahadeta.example.savedplaces.helper.Constants.FIRST_CON
+import tahadeta.example.savedplaces.helper.ModelPreferencesManager
 import tahadeta.example.savedplaces.ui.demo.DemoActivity
+import tahadeta.example.savedplaces.ui.map.MapsActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        ModelPreferencesManager.with(this.application)
 
         val view3 = findViewById<View>(R.id.view3)
         val onlySaved = findViewById<ImageView>(R.id.only_saved)
@@ -34,9 +39,17 @@ class SplashActivity : AppCompatActivity() {
         }, 2000) // 600 is the delayed time in milliseconds.
 
         Handler().postDelayed({
-            val intent = Intent(this, DemoActivity::class.java)
-            startActivity(intent)
-            finish()
+
+            if (ModelPreferencesManager.get<Boolean>(FIRST_CON) == null) {
+                ModelPreferencesManager.put(true, FIRST_CON)
+                val intent = Intent(this, DemoActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                val intent = Intent(this, MapsActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }, 3000) // 600 is the delayed time in milliseconds.
     }
 }
