@@ -17,9 +17,9 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1983695652173913" />
         <entry key="app/src/main/res/layout/add_place.xml" value="0.17604166666666668" />
         <entry key="app/src/main/res/layout/enable_location.xml" value="0.21302083333333333" />
-        <entry key="app/src/main/res/layout/favourite_item.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/favourite_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/favourite_list.xml" value="0.15260416666666668" />
-        <entry key="app/src/main/res/layout/item_page.xml" value="0.55" />
+        <entry key="app/src/main/res/layout/item_page.xml" value="0.5456024169921876" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_logo.xml" value="0.1185" />
         <entry key="app/src/main/res/xml/add_place_layout.xml" value="0.17604166666666668" />
       </map>
