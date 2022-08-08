@@ -1,8 +1,14 @@
 # SavedPlaces
 
+"Saved Places" or "Places Enregistrées" is an application that helps to save the places they visited.
+
 ## Description
 
-"Saved Places" or "Places Enregistrées" is an application that helps to save the places they visited.
+With Saved Places application you can :
+
+. Register the Places while using the App
+
+. Go to see the Places registred with the lat & lng
 
 ## Screenshot
 
