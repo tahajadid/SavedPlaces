@@ -10,6 +10,8 @@ With Saved Places application you can :
 
 . Go to see the Places registred with the lat & lng
 
+. Smooth animation on navigation
+
 ## Screenshot
 
 <img src="/saved1.png"/>
